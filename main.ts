@@ -1,5 +1,45 @@
-let hand = 0
 input.onGesture(Gesture.Shake, function () {
+    hand = randint(1, 4)
+    if (hand == 1) {
+        // Χαρτί
+        basic.showLeds(`
+            # # # # #
+            # . . . #
+            # . . . #
+            # . . . #
+            # # # # #
+            `)
+    } else if (hand == 2) {
+        // Πέτρα
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+    } else if (hand == 3) {
+        // Ψαλίδι
+        basic.showLeds(`
+            # # . . #
+            # # . # .
+            . . # . .
+            # # . # .
+            # # . . #
+            `)
+    } else {
+        // Μολύβι
+        // 
+        basic.showLeds(`
+            . . # . .
+            . . # # .
+            . . # . .
+            . . # . .
+            . . # . .
+            `)
+    }
+})
+input.onButtonPressed(Button.AB, function () {
     basic.showLeds(`
         . . . . .
         . . . . .
@@ -7,45 +47,34 @@ input.onGesture(Gesture.Shake, function () {
         . . . . .
         . . . . .
         `)
-    hand = randint(1, 4)
-    if (hand == 1) {
-        basic.showLeds(`
-            # # # # #
-            # . . . #
-            # . . . #
-            # . . . #
-            # # # # #
-            `)
-        music.playMelody("G B A G C5 B A B ", 120)
-    } else if (hand == 2) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-        music.playMelody("C5 B A G F E D C ", 120)
-    } else if (hand == 3) {
-        basic.showLeds(`
-            # # . . #
-            # # . # .
-            . . # . .
-            # # . # .
-            # # . . #
-            `)
-        music.playMelody("G F G A - F E D ", 120)
-    } else {
-        basic.showLeds(`
-            . . # . .
-            . . # . .
-            . . # . .
-            . . # . .
-            . . # . .
-            `)
-        music.playMelody("C5 G B A F A C5 B ", 120)
-    }
+    basic.showString("Score")
+    basic.showNumber(win)
+    music.playMelody("E B C5 A B G A F ", 120)
 })
+input.onButtonPressed(Button.A, function () {
+    basic.showIcon(IconNames.Yes)
+    win += 1
+    basic.clearScreen()
+})
+input.onButtonPressed(Button.B, function () {
+    basic.clearScreen()
+    music.playMelody("C5 B A G F E D C ", 120)
+})
+let hand = 0
+let win = 0
+win = 0
+basic.showLeds(`
+    . . . . #
+    . . . # .
+    # . # . .
+    . # . . .
+    . # . . .
+    `)
+music.playMelody("E B C5 A B G A F ", 120)
+basic.showString("Hi")
+basic.clearScreen()
 basic.forever(function () {
-	
+    if (input.buttonIsPressed(Button.A)) {
+        basic.showIcon(IconNames.Diamond)
+    }
 })
