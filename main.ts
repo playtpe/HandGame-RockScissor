@@ -39,6 +39,8 @@ input.onGesture(Gesture.Shake, function () {
             `)
     }
 })
+// Δείξε το σκορ
+// 
 input.onButtonPressed(Button.AB, function () {
     basic.showLeds(`
         . . . . .
@@ -51,17 +53,23 @@ input.onButtonPressed(Button.AB, function () {
     basic.showNumber(win)
     music.playMelody("E B C5 A B G A F ", 120)
 })
+// Κέρδισα !! Αύξησε το  σκορ
+// 
 input.onButtonPressed(Button.A, function () {
     basic.showIcon(IconNames.Yes)
     win += 1
     basic.clearScreen()
 })
+// Καθάρισε την οθόνη - με το Β
 input.onButtonPressed(Button.B, function () {
     basic.clearScreen()
     music.playMelody("C5 B A G F E D C ", 120)
 })
-let hand = 0
+// Αρχικοποίηση
+// 
 let win = 0
+let hand = 0
+hand = 0
 win = 0
 basic.showLeds(`
     . . . . #
